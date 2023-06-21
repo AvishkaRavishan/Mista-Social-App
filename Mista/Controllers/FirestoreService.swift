@@ -19,7 +19,7 @@ class FirestoreService: ObservableObject {
 
     // Fetch all posts
     func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void) {
-        firestore.collection("posts").getDocuments { [weak self] snapshot, error in
+        firestore.collection("posts").addSnapshotListener { [weak self] snapshot, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -43,6 +43,7 @@ class FirestoreService: ObservableObject {
             }
         }
     }
+
 
 
     // Create a new post (without authentication)

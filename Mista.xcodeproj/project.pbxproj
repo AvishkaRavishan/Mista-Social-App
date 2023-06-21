@@ -39,10 +39,15 @@
 		EF1CE63C2A40DBC500DC2C31 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1CE63B2A40DBC500DC2C31 /* FirebaseStorage */; };
 		EF1CE63E2A40DBC500DC2C31 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EF1CE63D2A40DBC500DC2C31 /* FirebaseStorageCombine-Community */; };
 		EFBEBA422A414D6C006D49C7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEBA412A414D6C006D49C7 /* HomeViewModel.swift */; };
-		EFBEBA482A42141B006D49C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFBEBA472A42141B006D49C7 /* GoogleService-Info.plist */; };
 		EFBEBA4A2A422D3D006D49C7 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEBA492A422D3D006D49C7 /* RemoteImage.swift */; };
 		EFBEBA4D2A422DA2006D49C7 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = EFBEBA4C2A422DA2006D49C7 /* URLImage */; };
 		EFBEBA4F2A422DA2006D49C7 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = EFBEBA4E2A422DA2006D49C7 /* URLImageStore */; };
+		EFBEBA732A42E62B006D49C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFBEBA722A42E62B006D49C7 /* GoogleService-Info.plist */; };
+		EFBEBA762A42EAAA006D49C7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EFBEBA752A42EAAA006D49C7 /* SDWebImageSwiftUI */; };
+		EFBEBA782A42EAED006D49C7 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEBA772A42EAED006D49C7 /* PostViewModel.swift */; };
+		EFBEBA7A2A42EB46006D49C7 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEBA792A42EB46006D49C7 /* PostDetailView.swift */; };
+		EFBEBA7C2A42EBB7006D49C7 /* EditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEBA7B2A42EBB7006D49C7 /* EditPostView.swift */; };
+		EFBEBA7E2A42FA09006D49C7 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEBA7D2A42FA09006D49C7 /* PostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,8 +68,12 @@
 		EF1CE6182A40D70100DC2C31 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		EF1CE61A2A40D70F00DC2C31 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		EFBEBA412A414D6C006D49C7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		EFBEBA472A42141B006D49C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFBEBA492A422D3D006D49C7 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		EFBEBA722A42E62B006D49C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EFBEBA772A42EAED006D49C7 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		EFBEBA792A42EB46006D49C7 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		EFBEBA7B2A42EBB7006D49C7 /* EditPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostView.swift; sourceTree = "<group>"; };
+		EFBEBA7D2A42FA09006D49C7 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +90,7 @@
 				EF1CE6322A40DBC500DC2C31 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				EF1CE6302A40DBC500DC2C31 /* FirebaseFunctions in Frameworks */,
 				EF1CE6222A40DBC500DC2C31 /* FirebaseAuthCombine-Community in Frameworks */,
+				EFBEBA762A42EAAA006D49C7 /* SDWebImageSwiftUI in Frameworks */,
 				EF1CE63C2A40DBC500DC2C31 /* FirebaseStorage in Frameworks */,
 				EF1CE6282A40DBC500DC2C31 /* FirebaseDynamicLinks in Frameworks */,
 				EF1CE63E2A40DBC500DC2C31 /* FirebaseStorageCombine-Community in Frameworks */,
@@ -115,7 +125,7 @@
 		EF1CE5F32A40D56100DC2C31 /* Mista */ = {
 			isa = PBXGroup;
 			children = (
-				EFBEBA472A42141B006D49C7 /* GoogleService-Info.plist */,
+				EFBEBA722A42E62B006D49C7 /* GoogleService-Info.plist */,
 				EF1CE60F2A40D64400DC2C31 /* Views */,
 				EF1CE60A2A40D61300DC2C31 /* Controllers */,
 				EF1CE6072A40D5F800DC2C31 /* Helpers */,
@@ -125,7 +135,8 @@
 				EF1CE5F82A40D56200DC2C31 /* Assets.xcassets */,
 				EF1CE5FA2A40D56200DC2C31 /* Preview Content */,
 				EFBEBA412A414D6C006D49C7 /* HomeViewModel.swift */,
-				EFBEBA492A422D3D006D49C7 /* RemoteImage.swift */,
+				EFBEBA772A42EAED006D49C7 /* PostViewModel.swift */,
+				EFBEBA7D2A42FA09006D49C7 /* PostView.swift */,
 			);
 			path = Mista;
 			sourceTree = "<group>";
@@ -151,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				EF1CE6082A40D60700DC2C31 /* ImagePicker.swift */,
+				EFBEBA492A422D3D006D49C7 /* RemoteImage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -173,6 +185,8 @@
 				EF1CE6162A40D6F000DC2C31 /* PostListView.swift */,
 				EF1CE6182A40D70100DC2C31 /* CreatePostView.swift */,
 				EF1CE61A2A40D70F00DC2C31 /* UserProfileView.swift */,
+				EFBEBA792A42EB46006D49C7 /* PostDetailView.swift */,
+				EFBEBA7B2A42EBB7006D49C7 /* EditPostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +226,7 @@
 				EF1CE63D2A40DBC500DC2C31 /* FirebaseStorageCombine-Community */,
 				EFBEBA4C2A422DA2006D49C7 /* URLImage */,
 				EFBEBA4E2A422DA2006D49C7 /* URLImageStore */,
+				EFBEBA752A42EAAA006D49C7 /* SDWebImageSwiftUI */,
 			);
 			productName = Mista;
 			productReference = EF1CE5F12A40D56100DC2C31 /* Mista.app */;
@@ -244,6 +259,7 @@
 			packageReferences = (
 				EF1CE61E2A40DBC500DC2C31 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EFBEBA4B2A422DA1006D49C7 /* XCRemoteSwiftPackageReference "url-image" */,
+				EFBEBA742A42EAAA006D49C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = EF1CE5F22A40D56100DC2C31 /* Products */;
 			projectDirPath = "";
@@ -260,7 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF1CE5FC2A40D56200DC2C31 /* Preview Assets.xcassets in Resources */,
-				EFBEBA482A42141B006D49C7 /* GoogleService-Info.plist in Resources */,
+				EFBEBA732A42E62B006D49C7 /* GoogleService-Info.plist in Resources */,
 				EF1CE5F92A40D56200DC2C31 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBEBA782A42EAED006D49C7 /* PostViewModel.swift in Sources */,
 				EF1CE60E2A40D63300DC2C31 /* FirestoreService.swift in Sources */,
 				EF1CE5F72A40D56100DC2C31 /* ContentView.swift in Sources */,
 				EF1CE5F52A40D56100DC2C31 /* MistaApp.swift in Sources */,
@@ -280,11 +297,14 @@
 				EF1CE6132A40D6C600DC2C31 /* LoginView.swift in Sources */,
 				EF1CE61B2A40D70F00DC2C31 /* UserProfileView.swift in Sources */,
 				EF1CE6172A40D6F000DC2C31 /* PostListView.swift in Sources */,
+				EFBEBA7E2A42FA09006D49C7 /* PostView.swift in Sources */,
 				EF1CE6092A40D60700DC2C31 /* ImagePicker.swift in Sources */,
+				EFBEBA7C2A42EBB7006D49C7 /* EditPostView.swift in Sources */,
 				EF1CE6042A40D5B100DC2C31 /* User.swift in Sources */,
 				EFBEBA422A414D6C006D49C7 /* HomeViewModel.swift in Sources */,
 				EF1CE6192A40D70100DC2C31 /* CreatePostView.swift in Sources */,
 				EF1CE6112A40D66700DC2C31 /* RegisterView.swift in Sources */,
+				EFBEBA7A2A42EB46006D49C7 /* PostDetailView.swift in Sources */,
 				EF1CE60C2A40D62300DC2C31 /* FirebaseAuthService.swift in Sources */,
 				EF1CE6062A40D5C000DC2C31 /* Post.swift in Sources */,
 			);
@@ -505,6 +525,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		EFBEBA742A42EAAA006D49C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -597,6 +625,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EFBEBA4B2A422DA1006D49C7 /* XCRemoteSwiftPackageReference "url-image" */;
 			productName = URLImageStore;
+		};
+		EFBEBA752A42EAAA006D49C7 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFBEBA742A42EAAA006D49C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
