@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var authManager = FirebaseAuthService()
+    @StateObject private var firestoreManager = FirestoreService()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            if authManager.isAuthenticated {
+                HomeView()
+                    .environmentObject(firestoreManager)
+            } else {
+                HomeView()
+                    .environmentObject(authManager)
+            }
         }
-        .padding()
+        .onAppear {
+            authManager.configureFirebaseAuthStateListener()
+        }
+        .onDisappear {
+            authManager.removeFirebaseAuthStateListener()
+        }
     }
 }
 
