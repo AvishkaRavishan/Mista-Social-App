@@ -8,30 +8,55 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var authManager = FirebaseAuthService()
-    @StateObject private var firestoreManager = FirestoreService()
+        @StateObject private var authManager = FirebaseAuthService()
+        @StateObject private var firestoreManager = FirestoreService()
 
     var body: some View {
-        NavigationView {
-            if authManager.isAuthenticated {
-                HomeView()
-                    .environmentObject(firestoreManager)
-            } else {
-                HomeView()
-                    .environmentObject(authManager)
-            }
+        TabView {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text(NSLocalizedString("Home", comment: ""))
+                }
+
+            CreatePostView()
+                .tabItem {
+                    Image(systemName: "plus.square")
+                    Text(NSLocalizedString("addPost", comment: ""))
+                }
+
         }
-        .onAppear {
-            authManager.configureFirebaseAuthStateListener()
-        }
-        .onDisappear {
-            authManager.removeFirebaseAuthStateListener()
-        }
+
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+
+
+//struct ContentView: View {
+//    @StateObject private var authManager = FirebaseAuthService()
+//    @StateObject private var firestoreManager = FirestoreService()
+//
+//    var body: some View {
+//        NavigationView {
+//            if authManager.isAuthenticated {
+//                HomeView()
+//                    .environmentObject(firestoreManager)
+//            } else {
+//                HomeView()
+//                    .environmentObject(authManager)
+//            }
+//        }
+//        .onAppear {
+//            authManager.configureFirebaseAuthStateListener()
+//        }
+//        .onDisappear {
+//            authManager.removeFirebaseAuthStateListener()
+//        }
+//    }
+//}
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
