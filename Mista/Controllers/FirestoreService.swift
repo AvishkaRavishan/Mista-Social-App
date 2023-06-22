@@ -10,12 +10,31 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import Combine
+import SwiftUI
 
 class FirestoreService: ObservableObject {
     @Published var posts: [Post] = []
+    @Published var messages: [Message] = []
 
-    private let firestore = Firestore.firestore()
-    private let storage = Storage.storage()
+    private let firestore: Firestore
+    private let storage: Storage
+
+    private let messagesCollection = "messages"
+
+    // Add the environment object property
+    @EnvironmentObject private var authManager: FirebaseAuthService
+
+    private var messagesSubject = PassthroughSubject<[Message], Never>()
+
+    var messagesPublisher: AnyPublisher<[Message], Never> {
+        messagesSubject.eraseToAnyPublisher()
+    }
+
+    init() {
+        self.firestore = Firestore.firestore()
+        self.storage = Storage.storage()
+    }
+
 
     // Fetch all posts
     func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void) {
@@ -44,13 +63,11 @@ class FirestoreService: ObservableObject {
         }
     }
 
-
-
     // Create a new post (without authentication)
     func createPost(_ post: Post, completion: @escaping (Result<String, Error>) -> Void) {
         do {
             let data = try self.postData(from: post)
-            
+
             firestore.collection("posts").addDocument(data: data) { error in
                 if let error = error {
                     completion(.failure(error))
@@ -63,8 +80,6 @@ class FirestoreService: ObservableObject {
             completion(.failure(error))
         }
     }
-
-
 
     // Update an existing post
     func updatePost(_ post: Post, completion: @escaping (Error?) -> Void) {
@@ -151,18 +166,18 @@ class FirestoreService: ObservableObject {
             completion(.failure(error))
             return
         }
-        
+
         let fileName = UUID().uuidString + ".jpg" // Add the file extension to the filename
         let storageRef = storage.reference().child("images/\(fileName)")
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        
+
         let uploadTask = storageRef.putData(imageData, metadata: metadata) { metadata, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            
+
             storageRef.downloadURL { url, error in
                 if let error = error {
                     completion(.failure(error))
@@ -174,11 +189,89 @@ class FirestoreService: ObservableObject {
                 }
             }
         }
-        
+
         // Observe the progress of the upload task if needed
         uploadTask.observe(.progress) { snapshot in
             // You can handle progress updates here if desired
         }
     }
+        
+        func receiveMessages() {
+            firestore
+                .collection(messagesCollection)
+                .order(by: "timestamp")
+                .addSnapshotListener { snapshot, error in
+                    if let error = error {
+                        print("Error fetching documents: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let documents = snapshot?.documents else {
+                        self.messagesSubject.send([])
+                        return
+                    }
+                    
+                    var messages: [Message] = []
+                    
+                    for document in documents {
+                        if let message = self.parseMessage(from: document) {
+                            messages.append(message)
+                        }
+                    }
+                    
+                    self.messagesSubject.send(messages)
+                }
+        }
+        
+    func sendMessage(_ message: Message, completion: @escaping (Result<Void, Error>) -> Void) {
+        if let messageId = message.id {
+            let messageData: [String: Any] = [
+                "id": messageId,
+                "text": message.text,
+                "sender": message.sender,
+                "timestamp": message.timestamp
+            ]
+            
+            firestore.collection(messagesCollection).document(messageId).setData(messageData) { error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            }
+        } else {
+            let error = NSError(domain: "InvalidMessageID", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid message ID"])
+            completion(.failure(error))
+        }
+    }
 
+
+    func deleteMessage(_ message: Message, completion: @escaping (Result<Void, Error>) -> Void) {
+        if let messageId = message.id {
+            firestore.collection(messagesCollection).document(messageId).delete { error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            }
+        } else {
+            let error = NSError(domain: "InvalidMessageID", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid message ID"])
+            completion(.failure(error))
+        }
+    }
+
+        
+        private func parseMessage(from document: DocumentSnapshot) -> Message? {
+            guard let data = document.data(),
+                  let id = data["id"] as? String,
+                  let text = data["text"] as? String,
+                  let sender = data["sender"] as? String,
+                  let timestamp = data["timestamp"] as? Timestamp else {
+                return nil
+            }
+            
+            let message = Message(id: id, text: text, sender: sender, timestamp: timestamp.dateValue())
+            return message
+        }
 }

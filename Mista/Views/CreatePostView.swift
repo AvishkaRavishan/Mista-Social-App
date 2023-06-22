@@ -11,6 +11,7 @@ struct CreatePostView: View {
     @State private var text = ""
     @State private var selectedImage: UIImage? = nil
     @State private var showImagePicker = false
+    @State private var showAlert = false
 
     @EnvironmentObject var firestoreManager: FirestoreService
 
@@ -49,6 +50,8 @@ struct CreatePostView: View {
 
             Button(action: {
                 createPost()
+                clearFields()
+                showAlert = true
             }) {
                 Text("Create Post")
                     .font(.headline)
@@ -64,6 +67,13 @@ struct CreatePostView: View {
             ImagePicker(selectedImage: $selectedImage)
         }
         .navigationBarTitle("Create Post")
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Success"),
+                message: Text("Post created successfully."),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 
     private func createPost() {
@@ -100,5 +110,10 @@ struct CreatePostView: View {
                 }
             }
         }
+    }
+    
+    private func clearFields() {
+        text = ""
+        selectedImage = nil
     }
 }
