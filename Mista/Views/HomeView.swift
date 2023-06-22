@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
-
+    @State private var isPresentingCreatePostView = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -21,12 +22,30 @@ struct HomeView: View {
                 .padding(.horizontal)
             }
             .navigationTitle("Home")
+            .navigationBarItems(trailing: Button(action: {
+                isPresentingCreatePostView = true
+            }) {
+                Image(systemName: "plus")
+                    .imageScale(.large)
+            })
+            .sheet(isPresented: $isPresentingCreatePostView) {
+                CreatePostView()
+            }
             .onAppear {
                 viewModel.fetchPosts()
             }
         }
+//        .tabItem {
+//            Image(systemName: "house")
+//            Text("Home")
+//        }
+        .tag(0)
+        .environmentObject(viewModel)
+        .accentColor(.blue)
     }
 }
+
+
 
 //struct PostView: View {
 //    let post: Post

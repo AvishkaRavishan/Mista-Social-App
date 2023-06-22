@@ -9,11 +9,16 @@ import Foundation
 import SwiftUI
 
 struct RegisterView: View {
+    @State private var name = ""
     @State private var email = ""
-    @State private var password = ""
+    @State private var password = "Avishka123"
     
     var body: some View {
         VStack {
+            TextField("Name", text: $name)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -23,8 +28,8 @@ struct RegisterView: View {
                 .padding()
             
             Button("Register") {
-                // Call the registerUser method from FirebaseAuthService passing the email and password
-                FirebaseAuthService().registerUser(email: email, password: password) { result in
+                // Call the registerUser method from FirebaseAuthService passing the name, email, and password
+                FirebaseAuthService().registerUser(name: name, email: email, password: password) { result in
                     switch result {
                     case .success(let user):
                         // Handle successful registration, e.g., navigate to HomeView
@@ -35,6 +40,7 @@ struct RegisterView: View {
                     }
                 }
             }
+
             .padding()
         }
         .padding()

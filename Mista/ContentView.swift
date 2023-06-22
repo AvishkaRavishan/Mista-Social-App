@@ -8,25 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
-        @StateObject private var authManager = FirebaseAuthService()
-        @StateObject private var firestoreManager = FirestoreService()
+    @StateObject private var authManager = FirebaseAuthService()
+    @StateObject private var firestoreManager = FirestoreService()
+    
 
     var body: some View {
         TabView {
             HomeView()
                 .tabItem {
-                    Image(systemName: "list.bullet")
+                    Image(systemName: "house.fill")
                     Text(NSLocalizedString("Home", comment: ""))
                 }
-
-            CreatePostView()
+            
+            ChatView()
                 .tabItem {
-                    Image(systemName: "plus.square")
-                    Text(NSLocalizedString("addPost", comment: ""))
+                    Image(systemName: "message.fill")
+                    Text(NSLocalizedString("Chat", comment: ""))
                 }
-
+            
+            NotificationsView()
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text(NSLocalizedString("Notifications", comment: ""))
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape.fill")
+                    Text(NSLocalizedString("Settings", comment: ""))
+                }
         }
-
+        .environmentObject(authManager) // Add the FirebaseAuthService as an environment object
+        .environmentObject(firestoreManager) // Add the FirestoreService as an environment object
     }
 }
 
